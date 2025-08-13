@@ -1,0 +1,20 @@
+# Domain Flipper Tool
+
+A lightweight password-protected web tool to find trending keywords and generate domain ideas.
+
+## Features
+- Dark mode UI
+- UK + Worldwide trends
+- Generates `.com` and `.co.uk` suggestions
+- Simple password login (`flip2025`)
+- Expiring domains + spam filter
+- Beginner-friendly interactive guide
+
+## Setup
+1. Upload all files to a GitHub repository.
+2. Deploy backend (server.js) to Render or Railway.
+3. Deploy frontend (index.html + assets) to Vercel.
+4. Open the Vercel URL and login with `flip2025`.
+
+## Password
+`flip2025`

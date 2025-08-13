@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #1f1f1f;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+h1, h2 {
+    color: #ffcc00;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #ffcc00;
+    color: black;
+    cursor: pointer;
+}
+
+section {
+    padding: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px 0;
+}
+

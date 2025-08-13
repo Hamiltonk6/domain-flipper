@@ -1,0 +1,50 @@
+const PASSWORD = "flip2025";
+
+function checkPassword() {
+    const input = document.getElementById("password").value;
+    if (input === PASSWORD) {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("app").style.display = "block";
+        loadLiveData();
+    } else {
+        alert("Incorrect password");
+    }
+}
+
+function logout() {
+    location.reload();
+}
+
+async function loadLiveData() {
+    try {
+        const trendsRes = await fetch("http://localhost:3000/api/trends");
+        const expiredRes = await fetch("http://localhost:3000/api/expired");
+
+        const trendsData = await trendsRes.json();
+        const expiredData = await expiredRes.json();
+
+        const trendList = document.getElementById("trend-list");
+        const domainList = document.getElementById("domain-list");
+
+        // Add Google Trends UK + Global
+        [...trendsData.uk, ...trendsData.global].forEach(trend => {
+            let li = document.createElement("li");
+            li.textContent = trend;
+            trendList.appendChild(li);
+
+            let domainLi = document.createElement("li");
+            domainLi.textContent = `${trend.replace(/\s+/g, '')}.com / ${trend.replace(/\s+/g, '')}.co.uk`;
+            domainList.appendChild(domainLi);
+        });
+
+        // Add expired domains
+        expiredData.expired.forEach(domain => {
+            let li = document.createElement("li");
+            li.textContent = `🔥 Expired: ${domain}`;
+            domainList.appendChild(li);
+        });
+
+    } catch (err) {
+        console.error("Error loading live data", err);
+    }
+}

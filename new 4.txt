@@ -1,0 +1,53 @@
+import express from "express";
+import fetch from "node-fetch";
+import cheerio from "cheerio";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Allow frontend requests
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+});
+
+// Google Trends (UK + worldwide)
+app.get("/api/trends", async (req, res) => {
+    try {
+        const googleTrendsUK = await fetch("https://trends.google.com/trends/trendingsearches/daily/rss?geo=GB");
+        const googleTrendsGlobal = await fetch("https://trends.google.com/trends/trendingsearches/daily/rss?geo=US");
+        const ukText = await googleTrendsUK.text();
+        const globalText = await googleTrendsGlobal.text();
+
+        // Extract <title> items
+        const ukMatches = [...ukText.matchAll(/<title>(.*?)<\/title>/g)].map(m => m[1]).slice(1, 6);
+        const globalMatches = [...globalText.matchAll(/<title>(.*?)<\/title>/g)].map(m => m[1]).slice(1, 6);
+
+        res.json({ uk: ukMatches, global: globalMatches });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Expired domains
+app.get("/api/expired", async (req, res) => {
+    try {
+        const page = await fetch("https://www.expireddomains.net/backorder-expired-domains/");
+        const html = await page.text();
+        const $ = cheerio.load(html);
+        const domains = [];
+
+        $("table.base1 tr").slice(1, 6).each((i, el) => {
+            const domain = $(el).find("td.field_domain a").text();
+            if (domain && !domain.includes("xn--")) {
+                domains.push(domain);
+            }
+        });
+
+        res.json({ expired: domains });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

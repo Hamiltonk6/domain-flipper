@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Flipper Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login-screen">
+    <h1>Domain Flipper Login</h1>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Login</button>
+</div>
+
+<div id="app" style="display:none;">
+    <header>
+        <h1>Trending Domain Finder</h1>
+        <button onclick="logout()">Logout</button>
+    </header>
+
+    <section id="trends">
+        <h2>🔥 Current Trends & Niches</h2>
+        <ul id="trend-list"></ul>
+    </section>
+
+    <section id="domains">
+        <h2>💡 Suggested Domains</h2>
+        <ul id="domain-list"></ul>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
