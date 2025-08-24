@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Domain Flipper Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="login-screen" class="panel">
+    <h1>Domain Flipper Login</h1>
+    <input type="password" id="password" placeholder="Enter password" />
+    <button onclick="checkPassword()">Login</button>
+    <p class="hint">Password: <code>flip2025</code></p>
+  </div>
+
+  <div id="app" style="display:none;">
+    <header>
+      <h1>Trending Domain Finder</h1>
+      <button onclick="logout()">Logout</button>
+    </header>
+
+    <section>
+      <h2>🔥 Current Trends & Niches</h2>
+      <ul id="trend-list"></ul>
+    </section>
+
+    <section>
+      <h2>💡 Suggested Domains (.com / .co.uk)</h2>
+      <ul id="domain-list"></ul>
+      <button onclick="exportCSV()">Export CSV</button>
+    </section>
+
+    <section class="guide">
+      <h2>📘 Beginner’s Flipping Guide</h2>
+      <ol>
+        <li><b>Pick hot niches:</b> Look at “Current Trends”.</li>
+        <li><b>Short & brandable:</b> 1–2 words, easy to say, no hyphens.</li>
+        <li><b>.com or .co.uk first:</b> these resell best for your UK focus.</li>
+        <li><b>Register cheap:</b> use Namecheap, GoDaddy, 123-Reg, Google Domains.</li>
+        <li><b>List for sale:</b> Afternic, Dan, Sedo, Flippa. Add a BIN price + make-offer.</li>
+        <li><b>Avoid spam:</b> for now stick to fresh regs; we’ll add spam checks in Phase 2.</li>
+        <li><b>Flip strategy:</b> list immediately; if no bites in 2–4 weeks, revisit pricing.</li>
+      </ol>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
